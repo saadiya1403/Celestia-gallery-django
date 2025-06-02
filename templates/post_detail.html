@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+    <div
+    class="fancy"
+    style="
+      padding: 1em;
+      width: 100%;
+      height: 130px;
+      box-sizing: border-box;
+      align-items: center;
+
+      /* At the bottom of our background stack,
+       let's have a misty grey solid color */
+      background-color: #ff65ff;
+
+      /* We stack linear gradients on top of each
+       other to create our color strip effect.
+       As you will notice, color gradients are
+       considered to be images and can be
+       manipulated as such */
+      background-image: linear-gradient(
+          175deg,
+          rgb(0 0 0 / 0%) 95%,
+          #ee00ee 95%
+        ),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 95%, #da00da 95%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 90%, #c700c7 90%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 92%, #9f009f 92%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 85%, #8c008c 85%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 89%, #780078 89%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 80%, #650065 80%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 86%, #510051 86%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 75%, #3d003d 75%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 83%, #2a002a 83%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 70%, #160016 70%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 80%, #020002 80%);
+    "
+  >
+    
+<h1 style="padding: 10px ; 
+ font-family: Times new Roman">POST DETAILS</h1>
+</div>
+{% comment %} {{ post.id }} <br/> {% endcomment %}
+{% comment %} {{ post.title }} <br/> {% endcomment %}
+<div >
+<h3></h3>
+<img src="{{ post.cover.url}}" style="padding:10px; background-color:purple; border-radius:25px"> <br/>
+ <BR>
+<div style="padding:25px;background-color:#da00da; width:50%; border-radius:25px; box-shadow:4px 3px purple">
+<u><b> CAPTION<b></u> :
+{{ post.title }} <br/>
+</div>
+</div>
+<br><br>
+<a href="{% url 'home'%}"><button class="button" style="background-color: #ff80bf ; color: black; ">back to home</button></a> <br/>
+
+</center>
+
+<br><br><Br>
+
+{% endblock content %}

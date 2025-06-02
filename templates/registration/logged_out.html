@@ -1,0 +1,118 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box}
+    
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+      padding: 14px 20px;
+      background-color: #f44336;
+    }
+    
+    /* Float cancel and login buttons and add an equal width */
+    .cancelbtn, .loginbtn {
+      float: left;
+      width: 120px;
+      margin:5px;
+    }
+    
+    /* Add padding to container elements */
+    .container {
+      padding: 15px;
+      margin: 10px;
+      border:solid 1px gray;
+      background-color:lightblue;
+    }
+    
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    
+    /* Change styles for cancel button and login button on extra small screens */
+    @media screen and (max-width: 300px) {
+      .cancelbtn, .loginbtn {
+         width: 100%;
+      }
+    }
+    </style>
+    
+</style>
+<center>
+<div class="container">
+  <h2>You are Logged out!</h2>
+
+  <a
+  href="{% url 'login'%}"
+  style="text-align: center; font-family: Lucida Console; color:black;width:100px;padding:10px;border:solid 1px grey">Click here to login again.</a >
+<a
+  href="{% url 'register'%}"
+  style="text-align: center; font-family: Lucida Console; color:black;width:100px;padding:10px;border:solid 1px grey">Click here to register as new user.</a>
+<br />
+<clear>
+
+
+</div>
+{% endblock content%}
+
+
+
+{% comment %} {% extends "base.html" %} {% block content %}
+<center>
+  <div
+    class="fancy"
+    style="
+      padding: 1em;
+      width: 100%;
+      height: 300px;
+      box-sizing: border-box;
+      align-items: center;
+
+      /* At the bottom of our background stack,
+       let's have a misty grey solid color */
+      background-color: #ff65ff;
+
+      /* We stack linear gradients on top of each
+       other to create our color strip effect.
+       As you will notice, color gradients are
+       considered to be images and can be
+       manipulated as such */
+      background-image: linear-gradient(
+          175deg,
+          rgb(0 0 0 / 0%) 95%,
+          #ee00ee 95%
+        ),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 95%, #da00da 95%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 90%, #c700c7 90%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 92%, #9f009f 92%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 85%, #8c008c 85%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 89%, #780078 89%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 80%, #650065 80%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 86%, #510051 86%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 75%, #3d003d 75%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 83%, #2a002a 83%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 70%, #160016 70%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 80%, #020002 80%);
+    "
+  >
+    
+      <p style="text-align: center; font-family: Lucida Console">Logged out!</p>
+      <div style="padding:50px; background-color:#da00da; width:50%; height:50%; border-radius:25px;box-shadow: 10px 10px #c700c7;">
+      <a
+        href="{% url 'login'%}"
+        style="text-align: center; font-family: Lucida Console; color:black"
+        >Click here to login again.</a >
+      <br />
+      <a
+        href="{% url 'register'%}"
+        style="text-align: center; font-family: Lucida Console; color:black"
+        >Click here to register as new user.</a>
+      <br />
+    </div>
+  </div>
+</center>
+{% endblock %} {% endcomment %}

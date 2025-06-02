@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Celestia{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base Template</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      :root {
+        --card_width: 250px;
+        --row_increment: 10px;
+        --card_border_radius: 16px;
+        --card_small: 26;
+        --card_medium: 33;
+        --card_large: 45;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        padding-top: 5px;
+        background-color: #EEEEEE;
+        font-family: arial;
+      }
+
+      .pin_container {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, var(--card_width));
+        grid-auto-rows: var(--row_increment);
+        justify-content: center;
+      }
+
+      .card {
+        padding: 0;
+        margin: 15px 10px;
+        border-radius: var(--card_border_radius);
+        background-color: pink;
+        border:2px solid purple;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      .card_small {
+        grid-row-end: span var(--card_small);
+      }
+
+      .card_medium {
+        grid-row-end: span var(--card_medium);
+      }
+
+      .card_large {
+        grid-row-end: span var(--card_large);
+      }
+      #logout-form {
+        display: inline;
+      }
+      #logout-form button {
+        padding-top: 13px;
+        margin: 0;
+      } 
+      .like-icon {
+        color: black;
+        font-size: 24px;
+        bottom: 10px;
+        right: 10px;
+        padding:10px;
+        shadow: 10px white;
+      }
+
+      .like-icon:hover, .like-icon-active {
+        color: red;
+        text-shadow: none;
+        font-size:32px;
+        padding:10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar sticky-top navbar-inverse"
+      style="margin:-5px;padding:0px;background-color:black;color:white">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a
+            class="navbar-brand"
+            href="\"
+            style="font-family: comicsans">CELESTIA</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="{% if url_name == 'home' %}active{% endif %}">
+              <a
+                href="{% url 'home' %}"
+                style="font-family: comicsans">Home</a>
+            </li>
+            <li class="{% if url_name == 'home' %}active{% endif %}">
+              <a
+                href="http://localhost:5000" target='_blank'
+                style="font-family: comicsans">Color Palette</a>
+            </li>
+            <li class="{% if url_name == 'add_post' %}active{% endif %}">
+              <a
+                href="{% url 'add_post' %}"
+                style="font-family: comicsans">New Post</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+          <li>
+            <a href="#" style="font-family: comicsans"
+              ><span class="glyphicon glyphicon-user"></span> Hi {{ user.get_username }}</a
+            >
+          </li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link">
+                <span class="glyphicon glyphicon-log-out"></span> Logout
+              </button>
+            </form>
+          </li>
+          {% else %}
+          <li>
+            <a href="#" style="color: white; font-family: comicsans"
+              ><span class="glyphicon glyphicon-user"></span> Hi Guest!</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'register' %}"
+              style="color: white; font-family: comicsans"
+              ><span class="glyphicon glyphicon-user"></span> Signup</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'login' %}?next={{ request.path }}"
+              style="color: white; font-family: comicsans"
+              ><span class="glyphicon glyphicon-log-in"></span> Login</a
+            >
+          </li>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <main>{% block content %} {% endblock %}</main>
+  </body>
+</html>

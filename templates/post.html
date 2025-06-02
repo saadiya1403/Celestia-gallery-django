@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div
+    class="fancy"
+    style="
+      padding: 1em;
+      width: 100%;
+      height: 130px;
+      box-sizing: border-box;
+      align-items: center;
+
+      /* At the bottom of our background stack,
+       let's have a misty grey solid color */
+      background-color: #ff65ff;
+
+      /* We stack linear gradients on top of each
+       other to create our color strip effect.
+       As you will notice, color gradients are
+       considered to be images and can be
+       manipulated as such */
+      background-image: linear-gradient(
+          175deg,
+          rgb(0 0 0 / 0%) 95%,
+          #ee00ee 95%
+        ),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 95%, #da00da 95%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 90%, #c700c7 90%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 92%, #9f009f 92%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 85%, #8c008c 85%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 89%, #780078 89%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 80%, #650065 80%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 86%, #510051 86%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 75%, #3d003d 75%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 83%, #2a002a 83%),
+        linear-gradient(175deg, rgb(0 0 0 / 0%) 70%, #160016 70%),
+        linear-gradient(85deg, rgb(0 0 0 / 0%) 80%, #020002 80%);
+    "
+  >
+    
+<h1 style="text-align: center; font-family: Lucida Console; padding:5px">Create New Post</h1>
+<div><br><br><br>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div class="container" style="background-color:#b300b3;
+  box-shadow: 10px 10px #da00da;
+  border-radius:25px;
+  padding:10px;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  ">
+  {{ form.as_p }}
+<center>
+  <button type="submit"  style="background-color: #f7dbea ; color: black; border-radius:5px">Submit My Post</button> <br><br>
+  <a href="\" style="color:black ">Go Back to Main page</a>
+</center>
+</form>
+</div>
+<br><br><br><br>
+{% endblock content %}

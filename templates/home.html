@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="pin_container">
+      {% for post in posts %}
+        <div class="card card_medium"
+          onclick="viewProductDetails({{post.id}})"
+          style="cursor:pointer;background-repeat:no-repeat; background-size:cover; background-image:url('{{ post.cover.url}}')">
+          {% if user.is_authenticated %}
+              <div class="like-icon" onclick="addlike(event,{{user.id}},{{post.id}})">
+          {% else %}
+              <div class="like-icon" onclick="return false;">
+          {% endif %}
+          {% comment %} {% endif %} {% endcomment %}
+            &hearts; <span class="like-count" id="like-count_{{post.id}}">{{post.Like_Count}}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    function viewProductDetails(id) {
+      window.location = "/post/" + id;
+    };
+
+    function addlike(e, user_id, post_id){
+      e.cancelBubble = true;
+      if (e.stopPropagation) e.stopPropagation();
+
+      fetch('post/like_post/', {
+        method: 'POST',
+        body: JSON.stringify({
+          'user_id': user_id,
+          'post_id': post_id
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+              IncreaseLikeCount(post_id);
+              alert('Liked success submitted!');
+          }
+          else {
+            alert('Something went wrong!!... please connect with the site admin')
+          }
+      });
+    }
+
+    function IncreaseLikeCount(id) {
+      var n = 'like-count_' + id;
+      var like_count_element = document.getElementById(n);
+      var likeCount = parseInt(like_count_element.innerHTML);
+      like_count_element.innerHTML = likeCount + 1;
+    }
+
+  </script>
+{% endblock content %}
